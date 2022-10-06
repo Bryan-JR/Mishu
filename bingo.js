@@ -23,33 +23,22 @@ const tarjeton = {
           letras: ['M', 'I', 'S', 'H', 'U'],
           matriz: [[],[],[],[],[]]
         },
-        num: 0
+        m: [],
+        i: [],
+        s: [],
+        h: [],
+        u: [],
       }  
     },
     methods: {
-        generaNumero(column){
-          switch (column) {
-            case 0:
-              this.num = Math.round(Math.random()*14)+1;
-              break;
-            case 1:
-              this.num = Math.round((Math.random()*14)+15)+1;
-              break;
-            case 2:
-              this.num = Math.round((Math.random()*14)+30)+1;
-              break;
-            case 3:
-              this.num = Math.round((Math.random()*14)+45)+1;
-              break;
-            case 4:
-              this.num = Math.round((Math.random()*14)+60)+1;
-              break;
-            default:
-              break;
-          }
-          if(this.tarj.matriz[column].includes(this.num)){
-            this.generaNumero(column);
-          }  
+        generaNumeros(){
+          for (let i = 0;  i < 15; i++) {
+            this.m.push(i+1);
+            this.i.push(i+16);
+            this.s.push(i+31);
+            this.h.push(i+46);
+            this.u.push(i+61);
+          } 
         },
         cambiarEstado(i, j, estado){
           this.tarj.matriz[i][j].estado = !estado;
@@ -57,13 +46,43 @@ const tarjeton = {
         }
     },
     mounted() {
+      this.generaNumeros();
       for(let i=0; i < 5; i++) {
         for(let j=0; j < 5; j++){
-          this.generaNumero(i);
           if (i==2&&j==2) this.tarj.matriz[i].push({numero: 'Mishu', estado: false});
-          else this.tarj.matriz[i].push({numero: this.num, estado: false});
+          else {
+            let rd = 0;
+            switch(i){
+              case 0:
+                rd = Math.floor(Math.random()*(this.m.length));
+                this.tarj.matriz[i].push({numero: this.m[rd], estado: false});
+                this.m.splice(rd, 1);
+                break;
+              case 1:
+                rd = Math.floor(Math.random()*(this.i.length));
+                this.tarj.matriz[i].push({numero: this.i[rd], estado: false});
+                this.i.splice(rd, 1);
+                break;
+              case 2:
+                rd = Math.floor(Math.random()*(this.s.length));
+                this.tarj.matriz[i].push({numero: this.s[rd], estado: false});
+                this.s.splice(rd, 1);
+                break;
+              case 3:
+                rd = Math.floor(Math.random()*(this.h.length));
+                this.tarj.matriz[i].push({numero: this.h[rd], estado: false});
+                this.h.splice(rd, 1);
+                break;
+              case 4:
+                rd = Math.floor(Math.random()*(this.u.length));
+                this.tarj.matriz[i].push({numero: this.u[rd], estado: false});
+                this.u.splice(rd, 1);
+                break;
+            }
+            
+
+          } 
         }
-        console.log(this.tarj.matriz[i]);
       }
     }
 }
