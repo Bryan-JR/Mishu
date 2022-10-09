@@ -15,6 +15,7 @@ const tarjeton = {
             </div>
         </div>
       </div>
+      <p v-if="bingo==true">Bingooo!</p>
     </div>
     `,
     data(){
@@ -28,6 +29,7 @@ const tarjeton = {
         s: [],
         h: [],
         u: [],
+        bingo: false,
       }  
     },
     methods: {
@@ -42,14 +44,36 @@ const tarjeton = {
         },
         cambiarEstado(i, j, estado){
           this.tarj.matriz[i][j].estado = !estado;
-
+          this.bingo = this.comprobarBingo();
+          console.log(this.bingo);
+        },
+        comprobarBingo(){
+          let dp = false;
+          let ds = false;
+          for(let i = 0; i < 5; i++){
+            for(let j = 0; j < 5; j++){
+              let estado = this.tarj.matriz[i][j].estado;
+              if(i==j){
+                if(estado==true) dp = true;
+                else dp = false;
+              }
+              if(i+j==4){
+                if(estado==true) ds = true;
+                else ds = false; 
+              }
+              if(dp||ds==false){
+                return false;
+              }
+            }
+          }
+          return (dp||ds) == true;
         }
     },
     mounted() {
       this.generaNumeros();
       for(let i=0; i < 5; i++) {
         for(let j=0; j < 5; j++){
-          if (i==2&&j==2) this.tarj.matriz[i].push({numero: 'Mishu', estado: false});
+          if (i==2&&j==2) this.tarj.matriz[i].push({numero: 'Mishu', estado: true});
           else {
             let rd = 0;
             switch(i){
