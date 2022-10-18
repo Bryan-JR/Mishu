@@ -4,25 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <LINK REL=StyleSheet HREF="style.css" TYPE="text/css" MEDIA=screen>
-    <title>Document</title>
+    <link rel=StyleSheet href="./css/style.css" type="text/css" media=screen>
+    <link rel="shortcut icon" href="./img/icon.ico" type="image/x-icon">
+    <title>Mishu</title>
 </head>
 <body>
-    <main>
-         <div>
-            <div class="contenedor">
-                <tarjeton></tarjeton>
-                <tarjeton></tarjeton>
+    <header>
+        <div class="cabezaInicio">
+            <img id="logo" src="./img/logo.png" alt="Logo Mishu" title="Logo Mishu">
+        </div>
+        <nav class="navOpciones">
+            <ul class="opciones">
+                <li><a href="#" class="op">¿Quiénes somos?</a></li>
+                <li><a href="#" class="op">Contactanos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <section class="colab">
+            <h1 class="tituloColab">Puedes ayudar a los animalitos con las siguientes actividades.</h1>
+            <div class="opcionesColab">
+                <a href="./html/bingo.html" class="mishuColab"><img src="./img/logo_bingo.png"  alt="bingo" title="Mishu Bingo"></a>
+                <a href="#" class="mishuColab"><img src="./img/logo_padrinos.png" alt="padrinos" title="Mishu Padrinos"></a>
             </div>
-         </div>
-        
+        </section>
     </main>
-   
+    <footer>
 
-
-    <script src="./node_modules/vue/dist/vue.js"></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./bingo.js"></script>
+    </footer>
 </body>
 </html>
